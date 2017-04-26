@@ -1,0 +1,2884 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "vCRM API",
+    "description": "Connect, Capitalise, Conquer with vCRM API",
+    "version": "1.0.0"
+  },
+  "host": "api.vcrm.io",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "basePath": "/v1",
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/organizations": {
+      "post": {
+        "summary": "Create organization",
+        "description": "Create new organization",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "organization",
+            "description": "Organization to be created.",
+            "schema": {
+              "$ref": "#/definitions/Organization"
+            }
+          }
+        ],
+        "tags": [
+          "Organizations"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created Organization",
+            "schema": {
+              "$ref": "#/definitions/Organization"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/organizations/{id}": {
+      "put": {
+        "summary": "Update organization",
+        "description": "Update organization by id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "minimum": 1,
+            "description": "The id of the organization to be updated."
+          },
+          {
+            "in": "body",
+            "name": "organization",
+            "description": "The organization attributes to be updated.",
+            "schema": {
+              "$ref": "#/definitions/Organization"
+            }
+          }
+        ],
+        "tags": [
+          "Organizations"
+        ],
+        "responses": {
+          "200": {
+            "description": "An array of price estimates by product",
+            "schema": {
+              "$ref": "#/definitions/Organization"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/contacts": {
+      "post": {
+        "summary": "Create contact",
+        "description": "Create new contact",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "contact",
+            "description": "Contact to be created.",
+            "schema": {
+              "$ref": "#/definitions/Contact"
+            }
+          }
+        ],
+        "tags": [
+          "Contacts"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created Contact",
+            "schema": {
+              "$ref": "#/definitions/Contact"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "List contacts",
+        "description": "List all contacts",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "description": "Query definition.",
+            "required": false,
+            "type": "string",
+            "format": "json"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "List of fields for projection.",
+            "required": false,
+            "type": "string",
+            "format": "json"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "integer",
+            "format": "int32",
+            "description": "Page to be fetched."
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "integer",
+            "format": "int32",
+            "description": "Number of records per page."
+          }
+        ],
+        "tags": [
+          "Contacts"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of contacts",
+            "schema": {
+              "$ref": "#/definitions/Contacts"
+            }
+          },
+          "400": {
+            "description": "validation errors",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/contacts/{id}": {
+      "get": {
+        "summary": "Fetch contacts",
+        "description": "Fetch contact by id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "minimum": 1,
+            "description": "The id of the contact to be fetched."
+          }
+        ],
+        "tags": [
+          "Contacts"
+        ],
+        "responses": {
+          "200": {
+            "description": "A single contact matching the id passed as parameter",
+            "schema": {
+              "$ref": "#/definitions/Contact"
+            }
+          },
+          "404": {
+            "description": "Contact with matching id not found at the server"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update contact",
+        "description": "Update contact by id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "minimum": 1,
+            "description": "The id of the contact to be updated."
+          },
+          {
+            "in": "body",
+            "name": "contact",
+            "description": "The contact to be updated.",
+            "schema": {
+              "$ref": "#/definitions/Contact"
+            }
+          }
+        ],
+        "tags": [
+          "Contacts"
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated contact",
+            "schema": {
+              "$ref": "#/definitions/Contact"
+            }
+          },
+          "400": {
+            "description": "Validation Errors",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete contact",
+        "description": "Delete contact by id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "minimum": 1,
+            "description": "The id of the contact to be deleted."
+          }
+        ],
+        "tags": [
+          "Contacts"
+        ],
+        "responses": {
+          "204": {
+            "description": "Deleted contact"
+          },
+          "400": {
+            "description": "Validation Errors",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/accounts": {
+      "post": {
+        "summary": "Create account",
+        "description": "Create new account",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "account",
+            "description": "The account to be created.",
+            "schema": {
+              "$ref": "#/definitions/Account"
+            }
+          }
+        ],
+        "tags": [
+          "Accounts"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created Account",
+            "schema": {
+              "$ref": "#/definitions/Account"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "List Accounts",
+        "description": "List all accounts.",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "description": "Query definition.",
+            "required": false,
+            "type": "string",
+            "format": "json"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "List of fields for projection.",
+            "required": false,
+            "type": "string",
+            "format": "json"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "integer",
+            "format": "int32",
+            "description": "Page to be fetched."
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "integer",
+            "format": "int32",
+            "description": "Number of records per page."
+          }
+        ],
+        "tags": [
+          "Accounts"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of accounts",
+            "schema": {
+              "$ref": "#/definitions/Accounts"
+            }
+          },
+          "400": {
+            "description": "validation errors",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/accounts/{id}": {
+      "get": {
+        "summary": "Fetch account",
+        "description": "The fetch account by id.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "minimum": 1,
+            "description": "The id of the account to be fetched."
+          }
+        ],
+        "tags": [
+          "Accounts"
+        ],
+        "responses": {
+          "200": {
+            "description": "A single account matching the id passed as parameter",
+            "schema": {
+              "$ref": "#/definitions/Account"
+            }
+          },
+          "404": {
+            "description": "Account with matching id not found at the server"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update account",
+        "description": "Update account by id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "minimum": 1,
+            "description": "The id of the account to be updated."
+          },
+          {
+            "in": "body",
+            "name": "account",
+            "description": "The account to be updated.",
+            "schema": {
+              "$ref": "#/definitions/Account"
+            }
+          }
+        ],
+        "tags": [
+          "Accounts"
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated account",
+            "schema": {
+              "$ref": "#/definitions/Account"
+            }
+          },
+          "400": {
+            "description": "Validation Errors",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete account",
+        "description": "Delete account by id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "minimum": 1,
+            "description": "The id of the account to be deleted."
+          }
+        ],
+        "tags": [
+          "Accounts"
+        ],
+        "responses": {
+          "204": {
+            "description": "Deleted account"
+          },
+          "400": {
+            "description": "Validation Errors",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/accounts/{accountId}/contacts": {
+      "post": {
+        "summary": "Create Account Contact",
+        "description": "Add a new contact to an account",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "accountId",
+            "required": true,
+            "type": "string",
+            "minimum": 1,
+            "description": "id of the account to add a contact"
+          },
+          {
+            "in": "body",
+            "name": "contact",
+            "description": "The contact to be created.",
+            "schema": {
+              "$ref": "#/definitions/Contact"
+            }
+          }
+        ],
+        "tags": [
+          "Accounts"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created Account Contact",
+            "schema": {
+              "$ref": "#/definitions/Contact"
+            }
+          },
+          "400": {
+            "description": "Validation Errors",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "List Account Contacts",
+        "description": "List all contacts belonging to an account",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "accountId",
+            "required": true,
+            "type": "string",
+            "minimum": 1,
+            "description": "Id of account whose contacts need to be fetched"
+          }
+        ],
+        "tags": [
+          "Accounts"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of contacts belonging to an account",
+            "schema": {
+              "$ref": "#/definitions/Accounts"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/accounts/{accountId}/contacts/{contactId}": {
+      "get": {
+        "summary": "Fetch account contact",
+        "description": "Fetch account contact by id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "accountId",
+            "required": true,
+            "type": "string",
+            "minimum": 1,
+            "description": "Id of Account whose contact need to be fetched"
+          },
+          {
+            "in": "path",
+            "name": "contactId",
+            "required": true,
+            "type": "string",
+            "minimum": 1,
+            "description": "Id of Contact to be fetched"
+          }
+        ],
+        "tags": [
+          "Accounts"
+        ],
+        "responses": {
+          "200": {
+            "description": "Contact belonging to an account",
+            "schema": {
+              "$ref": "#/definitions/Account"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update Account Contact",
+        "description": "Update contact belonging to an account",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "accountId",
+            "required": true,
+            "type": "string",
+            "minimum": 1,
+            "description": "Id of Account whose contact need to be updated"
+          },
+          {
+            "in": "path",
+            "name": "contactId",
+            "required": true,
+            "type": "string",
+            "minimum": 1,
+            "description": "Id of Contact to be updated"
+          },
+          {
+            "in": "body",
+            "name": "contact",
+            "description": "The contact to be updated.",
+            "schema": {
+              "$ref": "#/definitions/Contact"
+            }
+          }
+        ],
+        "tags": [
+          "Accounts"
+        ],
+        "responses": {
+          "200": {
+            "description": "Contact belonging to an account",
+            "schema": {
+              "$ref": "#/definitions/Account"
+            }
+          },
+          "400": {
+            "description": "Validation Errors",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete Account Contact",
+        "description": "Delete contact belonging to an account",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "accountId",
+            "required": true,
+            "type": "string",
+            "minimum": 1,
+            "description": "Id of Account whose contact need to be deleted"
+          },
+          {
+            "in": "path",
+            "name": "contactId",
+            "required": true,
+            "type": "string",
+            "minimum": 1,
+            "description": "Id of Contact to be updated"
+          }
+        ],
+        "tags": [
+          "Accounts"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Validation Errors",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/accounts/{accountId}/opportunities": {
+      "post": {
+        "summary": "Create Account Opportunity",
+        "description": "Add a new opportunity to an account",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "accountId",
+            "required": true,
+            "type": "string",
+            "minimum": 1,
+            "description": "Id of account whose opportunities need to be created"
+          },
+          {
+            "in": "body",
+            "name": "opportunity",
+            "description": "The opportunity to be created.",
+            "schema": {
+              "$ref": "#/definitions/Opportunity"
+            }
+          }
+        ],
+        "tags": [
+          "Accounts"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created account Opportunity",
+            "schema": {
+              "$ref": "#/definitions/Opportunity"
+            }
+          },
+          "400": {
+            "description": "Validation Errors",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "List Account Opportunities",
+        "description": "List opportunities belonging to an account",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "accountId",
+            "required": true,
+            "type": "string",
+            "minimum": 1,
+            "description": "Id of account whose opportunities need to be fetched"
+          }
+        ],
+        "tags": [
+          "Accounts"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of opportunities belonging to an account",
+            "schema": {
+              "$ref": "#/definitions/Accounts"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/accounts/{accountId}/opportunities/{opportunityId}": {
+      "get": {
+        "summary": "Fetch account opportunity",
+        "description": "Fetch account opportunity by id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "accountId",
+            "required": true,
+            "type": "string",
+            "minimum": 1,
+            "description": "Id of Account whose opportunity need to be fetched"
+          },
+          {
+            "in": "path",
+            "name": "opportunityId",
+            "required": true,
+            "type": "string",
+            "minimum": 1,
+            "description": "Id of Opportunity to be fetched"
+          }
+        ],
+        "tags": [
+          "Accounts"
+        ],
+        "responses": {
+          "200": {
+            "description": "Opportunity belonging to an account",
+            "schema": {
+              "$ref": "#/definitions/Account"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update Account Opportunity",
+        "description": "Update opportunity belonging to an account",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "accountId",
+            "required": true,
+            "type": "string",
+            "minimum": 1,
+            "description": "Id of Account whose opportunity need to be updated"
+          },
+          {
+            "in": "path",
+            "name": "opportunityId",
+            "required": true,
+            "type": "string",
+            "minimum": 1,
+            "description": "Id of Opportunity to be updated"
+          },
+          {
+            "in": "body",
+            "name": "opportunity",
+            "description": "The opportunity to be updated.",
+            "schema": {
+              "$ref": "#/definitions/Opportunity"
+            }
+          }
+        ],
+        "tags": [
+          "Accounts"
+        ],
+        "responses": {
+          "200": {
+            "description": "Opportunity belonging to an account",
+            "schema": {
+              "$ref": "#/definitions/Account"
+            }
+          },
+          "400": {
+            "description": "Validation Errors",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete Account Opportunity",
+        "description": "Delete opportunity belonging to an account",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "accountId",
+            "required": true,
+            "type": "string",
+            "minimum": 1,
+            "description": "Id of Account whose opportunity need to be deleted"
+          },
+          {
+            "in": "path",
+            "name": "opportunityId",
+            "required": true,
+            "type": "string",
+            "minimum": 1,
+            "description": "Id of Opportunity to be updated"
+          }
+        ],
+        "tags": [
+          "Accounts"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Validation Errors",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/campaigns": {
+      "post": {
+        "summary": "Create campaign",
+        "description": "Create new campaign",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "campaign",
+            "description": "The campaign to be created.",
+            "schema": {
+              "$ref": "#/definitions/Campaign"
+            }
+          }
+        ],
+        "tags": [
+          "Campaigns"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created Campaign",
+            "schema": {
+              "$ref": "#/definitions/Campaign"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "List Campaigns",
+        "description": "List all campaigns",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "description": "Query definition.",
+            "required": false,
+            "type": "string",
+            "format": "json"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "List of fields for projection.",
+            "required": false,
+            "type": "string",
+            "format": "json"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "integer",
+            "format": "int32",
+            "description": "Page to be fetched."
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "integer",
+            "format": "int32",
+            "description": "Number of records per page."
+          }
+        ],
+        "tags": [
+          "Campaigns"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of campaigns",
+            "schema": {
+              "$ref": "#/definitions/Campaigns"
+            }
+          },
+          "400": {
+            "description": "validation errors",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/campaigns/{id}": {
+      "get": {
+        "summary": "Fetch campaign",
+        "description": "Fetch campaign by id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "minimum": 1,
+            "description": "The id of the campaign to be fetched."
+          }
+        ],
+        "tags": [
+          "Campaigns"
+        ],
+        "responses": {
+          "200": {
+            "description": "A single campaign matching the id passed as parameter",
+            "schema": {
+              "$ref": "#/definitions/Campaign"
+            }
+          },
+          "404": {
+            "description": "Campaign with matching id not found at the server"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update campaign",
+        "description": "Update a campaign by id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "minimum": 1,
+            "description": "The id of the campaign to be updated."
+          },
+          {
+            "in": "body",
+            "name": "campaign",
+            "description": "The campaign to be updated.",
+            "schema": {
+              "$ref": "#/definitions/Campaign"
+            }
+          }
+        ],
+        "tags": [
+          "Campaigns"
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated campaign",
+            "schema": {
+              "$ref": "#/definitions/Campaign"
+            }
+          },
+          "400": {
+            "description": "Validation Errors",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete campaign",
+        "description": "Delete campaign by id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "minimum": 1,
+            "description": "The id of the campaign to be deleted."
+          }
+        ],
+        "tags": [
+          "Campaigns"
+        ],
+        "responses": {
+          "204": {
+            "description": "Deleted campaign"
+          },
+          "400": {
+            "description": "Validation Errors",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/opportunities": {
+      "post": {
+        "summary": "Create opportunity",
+        "description": "Create new opportunity",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "opportunity",
+            "description": "The opportunity to be created.",
+            "schema": {
+              "$ref": "#/definitions/Opportunity"
+            }
+          }
+        ],
+        "tags": [
+          "Opportunities"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created Opportunity",
+            "schema": {
+              "$ref": "#/definitions/Opportunity"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "List opportunities",
+        "description": "List all opportunities.",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "description": "Query definition.",
+            "required": false,
+            "type": "string",
+            "format": "json"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "List of fields for projection.",
+            "required": false,
+            "type": "string",
+            "format": "json"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "integer",
+            "format": "int32",
+            "description": "Page to be fetched."
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "integer",
+            "format": "int32",
+            "description": "Number of records per page."
+          }
+        ],
+        "tags": [
+          "Opportunities"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of opportunities",
+            "schema": {
+              "$ref": "#/definitions/Opportunities"
+            }
+          },
+          "400": {
+            "description": "validation errors",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/opportunities/{id}": {
+      "get": {
+        "summary": "Fetch opportunity",
+        "description": "Fetch opportunity by id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "minimum": 1,
+            "description": "The id of the opportunity to be fetched."
+          }
+        ],
+        "tags": [
+          "Opportunities"
+        ],
+        "responses": {
+          "200": {
+            "description": "A single opportunity matching the id passed as parameter",
+            "schema": {
+              "$ref": "#/definitions/Opportunity"
+            }
+          },
+          "404": {
+            "description": "Opportunity with matching id not found at the server"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update opportunity",
+        "description": "Update opportunity by id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "minimum": 1,
+            "description": "The id of the opportunity to be updated."
+          },
+          {
+            "in": "body",
+            "name": "opportunity",
+            "description": "The opportunity to be updated.",
+            "schema": {
+              "$ref": "#/definitions/Opportunity"
+            }
+          }
+        ],
+        "tags": [
+          "Opportunities"
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated opportunity",
+            "schema": {
+              "$ref": "#/definitions/Opportunity"
+            }
+          },
+          "400": {
+            "description": "Validation Errors",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete opportunity",
+        "description": "Delete opportunity by id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "minimum": 1,
+            "description": "The id of the opportunity to be deleted."
+          }
+        ],
+        "tags": [
+          "Opportunities"
+        ],
+        "responses": {
+          "204": {
+            "description": "Deleted opportunity"
+          },
+          "400": {
+            "description": "Validation Errors",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/leads": {
+      "post": {
+        "summary": "Create lead",
+        "description": "Create new lead",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "lead",
+            "description": "The lead to be created.",
+            "schema": {
+              "$ref": "#/definitions/Lead"
+            }
+          }
+        ],
+        "tags": [
+          "Leads"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created lead",
+            "schema": {
+              "$ref": "#/definitions/Lead"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "List Leads",
+        "description": "List all leads.",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "description": "Query definition.",
+            "required": false,
+            "type": "string",
+            "format": "json"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "List of fields for projection.",
+            "required": false,
+            "type": "string",
+            "format": "json"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "integer",
+            "format": "int32",
+            "description": "Page to be fetched."
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "integer",
+            "format": "int32",
+            "description": "Number of records per page."
+          }
+        ],
+        "tags": [
+          "Leads"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of leads",
+            "schema": {
+              "$ref": "#/definitions/Leads"
+            }
+          },
+          "400": {
+            "description": "validation errors",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/leads/{id}": {
+      "get": {
+        "summary": "Fetch lead",
+        "description": "Fetch lead by id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "minimum": 1,
+            "description": "The id of the lead to be fetched."
+          }
+        ],
+        "tags": [
+          "Leads"
+        ],
+        "responses": {
+          "200": {
+            "description": "A single lead matching the id passed as parameter",
+            "schema": {
+              "$ref": "#/definitions/Lead"
+            }
+          },
+          "404": {
+            "description": "Lead with matching id not found at the server"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update lead",
+        "description": "Update lead by id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "minimum": 1,
+            "description": "The id of the lead to be updated."
+          },
+          {
+            "in": "body",
+            "name": "lead",
+            "description": "The lead to be updated.",
+            "schema": {
+              "$ref": "#/definitions/Lead"
+            }
+          }
+        ],
+        "tags": [
+          "Leads"
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated lead",
+            "schema": {
+              "$ref": "#/definitions/Lead"
+            }
+          },
+          "400": {
+            "description": "Validation Errors",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete lead",
+        "description": "Delete lead by id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "minimum": 1,
+            "description": "The id of the lead to be deleted."
+          }
+        ],
+        "tags": [
+          "Leads"
+        ],
+        "responses": {
+          "204": {
+            "description": "Deleted lead"
+          },
+          "400": {
+            "description": "Validation Errors",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/tasks": {
+      "post": {
+        "summary": "Create task",
+        "description": "Create new task",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "task",
+            "description": "The task to be created.",
+            "schema": {
+              "$ref": "#/definitions/Task"
+            }
+          }
+        ],
+        "tags": [
+          "Tasks"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created Task",
+            "schema": {
+              "$ref": "#/definitions/Task"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "List Tasks",
+        "description": "The list tasks endpoint provides api to list tasks.",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "description": "Query definition.",
+            "required": false,
+            "type": "string",
+            "format": "json"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "List of fields for projection.",
+            "required": false,
+            "type": "string",
+            "format": "json"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "integer",
+            "format": "int32",
+            "description": "Page to be fetched."
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "integer",
+            "format": "int32",
+            "description": "Number of records per page."
+          }
+        ],
+        "tags": [
+          "Tasks"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of tasks",
+            "schema": {
+              "$ref": "#/definitions/Tasks"
+            }
+          },
+          "400": {
+            "description": "validation errors",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/tasks/{id}": {
+      "get": {
+        "summary": "Fetch task",
+        "description": "Fetch task by id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "minimum": 1,
+            "description": "The id of the task to be fetched."
+          }
+        ],
+        "tags": [
+          "Tasks"
+        ],
+        "responses": {
+          "200": {
+            "description": "A single task matching the id passed as parameter",
+            "schema": {
+              "$ref": "#/definitions/Task"
+            }
+          },
+          "404": {
+            "description": "Task with matching id not found at the server"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update task",
+        "description": "Update task by id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "minimum": 1,
+            "description": "The id of the task to be fetched."
+          },
+          {
+            "in": "body",
+            "name": "task",
+            "description": "The task to be updated.",
+            "schema": {
+              "$ref": "#/definitions/Task"
+            }
+          }
+        ],
+        "tags": [
+          "Tasks"
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated task",
+            "schema": {
+              "$ref": "#/definitions/Task"
+            }
+          },
+          "400": {
+            "description": "Validation Errors",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete task",
+        "description": "Delete task by id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "minimum": 1,
+            "description": "The id of the task to be deleted."
+          }
+        ],
+        "tags": [
+          "Tasks"
+        ],
+        "responses": {
+          "204": {
+            "description": "Deleted task"
+          },
+          "400": {
+            "description": "Validation Errors",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/customFields": {
+      "post": {
+        "summary": "Create CustomFields",
+        "description": "Create new CustomFields set",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "customFields",
+            "description": "The customFields set to be created.",
+            "schema": {
+              "$ref": "#/definitions/CustomFields"
+            }
+          }
+        ],
+        "tags": [
+          "Custom Fields"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created Customfield",
+            "schema": {
+              "$ref": "#/definitions/CustomFields"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "List CustomFields",
+        "description": "List all CustomFields",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "description": "Query definition.",
+            "required": false,
+            "type": "string",
+            "format": "json"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "List of fields for projection.",
+            "required": false,
+            "type": "string",
+            "format": "json"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "integer",
+            "format": "int32",
+            "description": "Page to be fetched."
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "integer",
+            "format": "int32",
+            "description": "Number of records per page."
+          }
+        ],
+        "tags": [
+          "Custom Fields"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of customFields",
+            "schema": {
+              "$ref": "#/definitions/CustomFieldsList"
+            }
+          },
+          "400": {
+            "description": "validation errors",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/customFields/{id}": {
+      "get": {
+        "summary": "Fetch customFields",
+        "description": "Fetch customFields set by id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "minimum": 1,
+            "description": "The id of the customField to be fetched."
+          }
+        ],
+        "tags": [
+          "Custom Fields"
+        ],
+        "responses": {
+          "200": {
+            "description": "A single customField matching the id passed as parameter",
+            "schema": {
+              "$ref": "#/definitions/CustomFields"
+            }
+          },
+          "404": {
+            "description": "Customfield with matching id not found at the server"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update customFields",
+        "description": "Update customFields by id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "minimum": 1,
+            "description": "The id of the customField to be updated."
+          },
+          {
+            "in": "body",
+            "name": "customField",
+            "description": "The customField to be updated.",
+            "schema": {
+              "$ref": "#/definitions/CustomFields"
+            }
+          }
+        ],
+        "tags": [
+          "Custom Fields"
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated customFields",
+            "schema": {
+              "$ref": "#/definitions/CustomFields"
+            }
+          },
+          "400": {
+            "description": "Validation Errors",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete customFields",
+        "description": "Delete customFields by id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "minimum": 1,
+            "description": "The id of the customField to be deleted."
+          }
+        ],
+        "tags": [
+          "Custom Fields"
+        ],
+        "responses": {
+          "204": {
+            "description": "Deleted customFields"
+          },
+          "400": {
+            "description": "Validation Errors",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Address": {
+      "type": "object",
+      "properties": {
+        "street": {
+          "type": "string"
+        },
+        "building": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "county": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "postCode": {
+          "type": "string"
+        }
+      }
+    },
+    "Location": {
+      "type": "object",
+      "properties": {
+        "lat": {
+          "type": "number"
+        },
+        "lng": {
+          "type": "number"
+        }
+      }
+    },
+    "BusinessHour": {
+      "type": "object",
+      "properties": {
+        "start": {
+          "type": "string"
+        },
+        "close": {
+          "type": "string"
+        }
+      }
+    },
+    "Organization": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "description": "Unique Organization ID"
+        },
+        "about": {
+          "type": "string",
+          "description": "About the organization"
+        },
+        "tagline": {
+          "type": "string",
+          "description": "Tagine of the organization"
+        },
+        "address": {
+          "$ref": "#/definitions/Address"
+        },
+        "location": {
+          "$ref": "#/definitions/Location"
+        },
+        "category": {
+          "type": "string",
+          "description": "Business category of the organization"
+        },
+        "timeZone": {
+          "type": "string",
+          "description": "Default time zone for the organization"
+        },
+        "businessHour": {
+          "$ref": "#/definitions/BusinessHour"
+        },
+        "contactPerson": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        }
+      }
+    },
+    "Contact": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "description": "Unique Contact Id"
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the contact (Example Mr, Mrs, Ms, Dr...)"
+        },
+        "firstName": {
+          "type": "string",
+          "description": "First Name of the contact"
+        },
+        "lastName": {
+          "type": "string",
+          "description": "Last Name of the contact"
+        },
+        "dateOfBirth": {
+          "type": "string",
+          "format": "isodate",
+          "description": "Date of birth of the contact"
+        },
+        "accountId": {
+          "type": "string",
+          "format": "objectId",
+          "description": "Id of the account to which the contact belongs"
+        },
+        "leadId": {
+          "type": "string",
+          "format": "objectId",
+          "description": "Id of the lead to which the contact belongs to"
+        },
+        "department": {
+          "type": "string",
+          "description": "Departmemt of the contact"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "Email of the contact"
+        },
+        "alternateEmail": {
+          "type": "string",
+          "format": "email",
+          "description": "Alternate email of the contact"
+        },
+        "phone": {
+          "type": "string",
+          "description": "Phone number of the contact"
+        },
+        "mobile": {
+          "type": "string",
+          "description": "Mobile number of the contact"
+        },
+        "fax": {
+          "type": "string",
+          "description": "Fax number of the contact"
+        },
+        "socialPresence": {
+          "type": "array",
+          "description": "Social presence of the contact across various channel",
+          "items": {
+            "type": "object",
+            "properties": {
+              "channel": {
+                "type": "string",
+                "description": "Name of the social channel"
+              },
+              "uri": {
+                "type": "string",
+                "description": "URI to the social channel"
+              }
+            }
+          }
+        },
+        "doNotCall": {
+          "type": "boolean",
+          "description": "Flag to specify whether the contact can be called and contacted"
+        },
+        "source": {
+          "type": "string",
+          "description": "Source of the contact"
+        },
+        "accessLevel": {
+          "type": "string",
+          "description": "Access level of the contact",
+          "enum": [
+            "public",
+            "private"
+          ]
+        },
+        "ownerId": {
+          "type": "string",
+          "format": "objectId",
+          "description": "Id of the user who created / owns the contact"
+        },
+        "assignedToId": {
+          "type": "string",
+          "format": "objectId",
+          "description": "Id of the user to whom the contact has been assigned to"
+        },
+        "subscribedUsers": {
+          "type": "array",
+          "description": "users who have access to the contact",
+          "items": {
+            "type": "string"
+          }
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Created timestamp",
+          "format": "isoDate"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "isoDate",
+          "description": "Updated timestamp"
+        },
+        "deletedAt": {
+          "type": "string",
+          "format": "isoDate",
+          "description": "Deleted timestamp"
+        }
+      }
+    },
+    "Contacts": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Contact"
+          }
+        },
+        "cursor": {
+          "$ref": "#/definitions/Cursor"
+        }
+      }
+    },
+    "Account": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "description": "Unique Account Id"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the Account"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "Email of the Account"
+        },
+        "phone": {
+          "type": "string",
+          "description": "Phone number of the Account"
+        },
+        "fax": {
+          "type": "string",
+          "description": "Fax number of the Account"
+        },
+        "Rating": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Rating of the Account"
+        },
+        "accessLevel": {
+          "type": "string",
+          "description": "Access level of the Account",
+          "enum": [
+            "public",
+            "private"
+          ]
+        },
+        "ownerId": {
+          "type": "string",
+          "format": "objectId",
+          "description": "Id of the user who created / owns the Account"
+        },
+        "assignedToId": {
+          "type": "string",
+          "format": "objectId",
+          "description": "Id of the user to whom the Account has been assigned to"
+        },
+        "subscribedUsers": {
+          "type": "array",
+          "description": "users who have access to the Account",
+          "items": {
+            "type": "string"
+          }
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Created timestamp",
+          "format": "isoDate"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "isoDate",
+          "description": "Updated timestamp"
+        },
+        "deletedAt": {
+          "type": "string",
+          "format": "isoDate",
+          "description": "Deleted timestamp"
+        }
+      }
+    },
+    "Accounts": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Account"
+          }
+        },
+        "cursor": {
+          "$ref": "#/definitions/Cursor"
+        }
+      }
+    },
+    "Campaign": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "description": "Unique Campaign Id"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the Campaign"
+        },
+        "objectives": {
+          "type": "string",
+          "description": "Objectives of the Campaign"
+        },
+        "budget": {
+          "type": "number",
+          "format": "decimal",
+          "description": "Budget for the campaign"
+        },
+        "targetLeads": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Targeted leads for the campaign"
+        },
+        "targetedConversions": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Targeted conversions for the campaign"
+        },
+        "targetedRevenue": {
+          "type": "number",
+          "format": "decimal",
+          "description": "Targeted revenue for the campaign"
+        },
+        "leads": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Leads from the campaign"
+        },
+        "conversions": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Conversions from the campaign"
+        },
+        "revenue": {
+          "type": "number",
+          "format": "decimal",
+          "description": "Potential Revenue potential from the campaign"
+        },
+        "startDate": {
+          "type": "string",
+          "format": "isodate",
+          "description": "Start date of the campaign"
+        },
+        "endDate": {
+          "type": "string",
+          "format": "isodate",
+          "description": "End date of the campaign"
+        },
+        "status": {
+          "type": "string",
+          "description": "Status of the Campaign",
+          "enum": [
+            "planned",
+            "started",
+            "on hold",
+            "completed",
+            "called off"
+          ]
+        },
+        "accessLevel": {
+          "type": "string",
+          "description": "Access level of the Account",
+          "enum": [
+            "public",
+            "private"
+          ]
+        },
+        "ownerId": {
+          "type": "string",
+          "format": "objectId",
+          "description": "Id of the user who created / owns the Account"
+        },
+        "assignedToId": {
+          "type": "string",
+          "format": "objectId",
+          "description": "Id of the user to whom the Account has been assigned to"
+        },
+        "subscribedUsers": {
+          "type": "array",
+          "description": "users who have access to the Account",
+          "items": {
+            "type": "string"
+          }
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Created timestamp",
+          "format": "isoDate"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "isoDate",
+          "description": "Updated timestamp"
+        },
+        "deletedAt": {
+          "type": "string",
+          "format": "isoDate",
+          "description": "Deleted timestamp"
+        }
+      }
+    },
+    "Campaigns": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Campaign"
+          }
+        },
+        "cursor": {
+          "$ref": "#/definitions/Cursor"
+        }
+      }
+    },
+    "Opportunity": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "description": "Unique Opportunity Id"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the Opportunity"
+        },
+        "source": {
+          "type": "string",
+          "description": "Source of the Opportunity"
+        },
+        "stage": {
+          "type": "string",
+          "description": "Opportunity Stage",
+          "enum": [
+            "prospecting",
+            "analysis",
+            "presentation",
+            "proposal",
+            "negotiation",
+            "final review",
+            "won",
+            "lost"
+          ]
+        },
+        "probability": {
+          "type": "number",
+          "format": "percent",
+          "description": "Probability of the opportunity in percent"
+        },
+        "amount": {
+          "type": "number",
+          "format": "decimal",
+          "description": "Amount realizable through the opportunity"
+        },
+        "budget": {
+          "type": "number",
+          "format": "decimal",
+          "description": "Budget for the opportunity"
+        },
+        "discount": {
+          "type": "number",
+          "format": "decimal",
+          "description": "Discount amount"
+        },
+        "closesOn": {
+          "type": "string",
+          "format": "isodate",
+          "description": "Closing date for the opportunity"
+        },
+        "accessLevel": {
+          "type": "string",
+          "description": "Access level of the Account",
+          "enum": [
+            "public",
+            "private"
+          ]
+        },
+        "ownerId": {
+          "type": "string",
+          "format": "objectId",
+          "description": "Id of the user who created / owns the Account"
+        },
+        "assignedToId": {
+          "type": "string",
+          "format": "objectId",
+          "description": "Id of the user to whom the Account has been assigned to"
+        },
+        "subscribedUsers": {
+          "type": "array",
+          "description": "users who have access to the Account",
+          "items": {
+            "type": "string"
+          }
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Created timestamp",
+          "format": "isoDate"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "isoDate",
+          "description": "Updated timestamp"
+        },
+        "deletedAt": {
+          "type": "string",
+          "format": "isoDate",
+          "description": "Deleted timestamp"
+        }
+      }
+    },
+    "Opportunities": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Opportunity"
+          }
+        },
+        "cursor": {
+          "$ref": "#/definitions/Cursor"
+        }
+      }
+    },
+    "Lead": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "description": "Unique Lead Id"
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the lead (Example Mr, Mrs, Ms, Dr...)"
+        },
+        "firstName": {
+          "type": "string",
+          "description": "First Name of the lead"
+        },
+        "lastName": {
+          "type": "string",
+          "description": "Last Name of the lead"
+        },
+        "dateOfBirth": {
+          "type": "string",
+          "format": "isodate",
+          "description": "Date of birth of the lead"
+        },
+        "referredBy": {
+          "type": "string",
+          "description": "Reference source of the lead"
+        },
+        "accountId": {
+          "type": "string",
+          "format": "objectId",
+          "description": "Id of the account to which the lead belongs"
+        },
+        "leadId": {
+          "type": "string",
+          "format": "objectId",
+          "description": "Id of the lead to which the lead belongs to"
+        },
+        "department": {
+          "type": "string",
+          "description": "Departmemt of the lead"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "Email of the lead"
+        },
+        "alternateEmail": {
+          "type": "string",
+          "format": "email",
+          "description": "Alternate email of the lead"
+        },
+        "phone": {
+          "type": "string",
+          "description": "Phone number of the lead"
+        },
+        "mobile": {
+          "type": "string",
+          "description": "Mobile number of the lead"
+        },
+        "fax": {
+          "type": "string",
+          "description": "Fax number of the lead"
+        },
+        "socialPresence": {
+          "type": "array",
+          "description": "Social presence of the lead across various channel",
+          "items": {
+            "type": "object",
+            "properties": {
+              "channel": {
+                "type": "string",
+                "description": "Name of the social channel"
+              },
+              "uri": {
+                "type": "string",
+                "description": "URI to the social channel"
+              }
+            }
+          }
+        },
+        "doNotCall": {
+          "type": "boolean",
+          "description": "Flag to specify whether the lead can be called and leaded"
+        },
+        "source": {
+          "type": "string",
+          "description": "Source of the lead"
+        },
+        "accessLevel": {
+          "type": "string",
+          "description": "Access level of the lead",
+          "enum": [
+            "public",
+            "private"
+          ]
+        },
+        "ownerId": {
+          "type": "string",
+          "format": "objectId",
+          "description": "Id of the user who created / owns the lead"
+        },
+        "assignedToId": {
+          "type": "string",
+          "format": "objectId",
+          "description": "Id of the user to whom the lead has been assigned to"
+        },
+        "subscribedUsers": {
+          "type": "array",
+          "description": "users who have access to the lead",
+          "items": {
+            "type": "string"
+          }
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Created timestamp",
+          "format": "isoDate"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "isoDate",
+          "description": "Updated timestamp"
+        },
+        "deletedAt": {
+          "type": "string",
+          "format": "isoDate",
+          "description": "Deleted timestamp"
+        }
+      }
+    },
+    "Leads": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Lead"
+          }
+        },
+        "cursor": {
+          "$ref": "#/definitions/Cursor"
+        }
+      }
+    },
+    "Task": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "description": "Unique Task Id"
+        },
+        "assetId": {
+          "type": "string",
+          "description": "Asset id to which the task belongs to."
+        },
+        "assetType": {
+          "type": "string",
+          "description": "Type of asset. For example Campaign, Account etc"
+        },
+        "priority": {
+          "type": "string",
+          "description": "Priority of the task"
+        },
+        "category": {
+          "type": "string",
+          "description": "Category of the task"
+        },
+        "bucket": {
+          "type": "string",
+          "description": "Bucket to which the task belongs to"
+        },
+        "dueAt": {
+          "type": "string",
+          "format": "isodate"
+        },
+        "completedAt": {
+          "type": "string",
+          "format": "isodate"
+        },
+        "accessLevel": {
+          "type": "string",
+          "description": "Access level of the lead",
+          "enum": [
+            "public",
+            "private"
+          ]
+        },
+        "ownerId": {
+          "type": "string",
+          "format": "objectId",
+          "description": "Id of the user who created / owns the lead"
+        },
+        "assignedToId": {
+          "type": "string",
+          "format": "objectId",
+          "description": "Id of the user to whom the lead has been assigned to"
+        },
+        "subscribedUsers": {
+          "type": "array",
+          "description": "users who have access to the lead",
+          "items": {
+            "type": "string"
+          }
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Created timestamp",
+          "format": "isoDate"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "isoDate",
+          "description": "Updated timestamp"
+        },
+        "deletedAt": {
+          "type": "string",
+          "format": "isoDate",
+          "description": "Deleted timestamp"
+        }
+      }
+    },
+    "Tasks": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Task"
+          }
+        },
+        "cursor": {
+          "$ref": "#/definitions/Cursor"
+        }
+      }
+    },
+    "CustomField": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the custom field"
+        },
+        "position": {
+          "type": "integer",
+          "format": "int32",
+          "description": "position of the field"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the custom field"
+        },
+        "caption": {
+          "type": "string",
+          "description": "Caption to be displayed in the UI"
+        },
+        "type": {
+          "type": "string",
+          "description": "Type of the custom field. Example text, integer, date, list etc"
+        },
+        "isMandatory": {
+          "type": "boolean",
+          "description": "Mandatory flag"
+        },
+        "isDisabled": {
+          "type": "boolean",
+          "description": "Disabled flag"
+        },
+        "defaultValue": {
+          "type": "string",
+          "description": "default value of the field"
+        },
+        "minValue": {
+          "type": "string",
+          "description": "min default value of the field (numeric fields only)"
+        },
+        "maxValue": {
+          "type": "string",
+          "description": "max default value of the field (numeric fields only)"
+        },
+        "stepValue": {
+          "type": "string",
+          "description": "incremental step value for permutations (numeric fields only)"
+        }
+      }
+    },
+    "CustomFields": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "description": "Unique Task Id"
+        },
+        "assetType": {
+          "type": "string",
+          "description": "Type of asset. For example Campaign, Account etc"
+        },
+        "fields": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CustomField"
+          }
+        }
+      }
+    },
+    "CustomFieldsList": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CustomFields"
+          }
+        },
+        "cursor": {
+          "$ref": "#/definitions/Cursor"
+        }
+      }
+    },
+    "Cursor": {
+      "type": "object",
+      "properties": {
+        "currentPage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "perPage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "totalRecords": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "totalPages": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "Error": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "fields": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
